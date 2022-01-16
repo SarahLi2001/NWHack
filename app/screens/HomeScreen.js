@@ -45,7 +45,12 @@ function HomeScreen(props) {
                     </View>
                     <View style={{backgroundColor: "#ffffff", padding: 50, flex: .8,}}>
                         <Text style={styles.modalPrompt}>What is the highlight of your day?</Text>
-                        <TextInput style={styles.input}/>
+                        <TextInput 
+                            style={styles.input}
+                            multiline={true}
+                            placeholder="Type your answer..."
+                            onChangeText={(val) => setUserInput(val)}/>
+                        <Text>{userInput}</Text>
                     </View>
                 </View>
         </Modal>
@@ -135,6 +140,8 @@ function HomeScreen(props) {
         height: 159,
         top: 50,
         right: 15,
+        paddingTop: 30,
+        padding: 30,
     },
   });
   
