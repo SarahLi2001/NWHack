@@ -6,29 +6,30 @@ import { StatusBar } from 'expo-status-bar';
 function HomeScreen(props) {  
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Hello</Text>
-        <View 
-          style={{
+        <Text
+            style={{ 
             position: "absolute",
-            width: 311,
-            height: 106,
-            left: 32,
-            bottom: 571,
-            
-            backgroundColor: "#F2F2F2",
-            borderRadius: 20,
-          }}>
-        <Text>No</Text>
-        </View>
+            left: 32, 
+            top: 76,
+            width: 117,
+            height: 27,
+            fontSize: 23,}}>
+                Hello!
+        </Text>
+
+        <Image 
+            source={require('../assets/streak.png')} 
+            style={{ position: "absolute",
+            left: 32, 
+            top: 135}}/>
 
         <View 
           style={{
-            
             position: "absolute",
             width: 311,
             height: 424,
             left: 32,
-            bottom: 265,
+            top: 265,
             
             backgroundColor: "#F2F2F2",
             borderRadius: 20,
@@ -44,7 +45,6 @@ function HomeScreen(props) {
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
     },
   });
   
