@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, Image, View, SafeAreaView, TouchableWithoutFeedback, Alert, Button } from 'react-native';
+import { StyleSheet, Text, Image, View, SafeAreaView, Alert, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 
 function HomeScreen(props) {  
+    const [isModalVisible, setIsModalVisible] = React.useState(false);
+
     return (
       <SafeAreaView style={styles.container}>
         <Text
@@ -25,7 +27,6 @@ function HomeScreen(props) {
 
         <View 
           style={{
-            position: "absolute",
             width: 311,
             height: 424,
             left: 32,
@@ -34,6 +35,27 @@ function HomeScreen(props) {
             backgroundColor: "#F2F2F2",
             borderRadius: 20,
           }}>
+
+            <Image 
+                source={require('../assets/todaysPrompt.png')} 
+                style={{ 
+                left: 77, 
+                top: 24,
+                height: 18,
+                }}/>
+
+        <TouchableOpacity 
+        onPress={() => 
+            Alert.prompt("Answer Prompt", "Prompt", (text) => console.log(text))}>
+          <Image
+           style={{
+            width: 231,
+            height: 43,
+            left: 40,
+            top: 315,
+          }}
+          source={require('../assets/answerButton.png')}/>
+        </TouchableOpacity>
         </View>
         
         <StatusBar style="auto" />
