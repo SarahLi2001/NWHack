@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, Image, View, SafeAreaView, Alert, TouchableOpacity, Modal} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-function HomeScreen(props) {  
+function HomeScreen({props}) {  
     const handleAnswer = () => console.log("Answer clicked");
 
     return (
