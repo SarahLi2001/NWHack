@@ -1,9 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, Image, View, SafeAreaView, Alert, TouchableOpacity, Modal} from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, Image, View, SafeAreaView, TextInput, TouchableOpacity, Modal} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 function HomeScreen(props) {  
-    const handleAnswer = () => console.log("Answer clicked");
+    const [show, setShow] = useState(false); 
+    const [userInput, setUserInput] = useState(null)
 
     return (
       <SafeAreaView style={styles.container}>
@@ -43,8 +44,7 @@ function HomeScreen(props) {
                 height: 18,
                 }}/>
 
-        <TouchableOpacity 
-        onPress={handleAnswer}>
+        <TouchableOpacity onPress={() => setShow(true)}>
           <Image
            style={{
             width: 231,
@@ -58,11 +58,25 @@ function HomeScreen(props) {
 
         <Modal 
             transparent={true}
-            visible={false}>
+            visible={show}>
                 <View style={{backgroundColor: "#000000aa", flex: 1}}>
                     <View style={{flex: .2}}></View>
-                    <View style={{backgroundColor: "#ffffff", padding: 50, borderRadius: 24, flex: .8, justifyContent: 'flex-end',}}>
-                        <Text>nAUR</Text>
+                    <View
+                        style={{
+                        backgroundColor: "#F4F4F4",
+                        width: 375,
+                        height: 53,
+                        borderTopLeftRadius: 24,
+                        borderTopRightRadius: 24,
+                        }}
+                    >
+                        <Text 
+                            style={styles.modalTitle}>
+                            Answer Prompt</Text>
+                    </View>
+                    <View style={{backgroundColor: "#ffffff", padding: 50, flex: .8,}}>
+                        <Text style={styles.modalPrompt}>What is the highlight of your day?</Text>
+                        <TextInput style={styles.input}/>
                     </View>
                 </View>
         </Modal>
@@ -76,6 +90,36 @@ function HomeScreen(props) {
     container: {
       flex: 1,
       backgroundColor: '#fff',
+    },
+
+    modalTitle: {
+            position: "absolute",
+            left: 128, 
+            top: 17,
+            width: 119,
+            height: 19,
+            fontSize: 16
+    },
+
+    modalPrompt: {
+        position: "absolute",
+        width: 264,
+        height: 19,
+        left: 56,
+        bottom: 564.5,
+
+        fontSize: 16,
+        textAlign: "center",
+        color: "#430CB9"
+    },
+
+    input: {
+        backgroundColor: "#F2F2F2",
+        borderRadius: 20,
+        width: 311,
+        height: 159,
+        top: 50,
+        right: 15,
     },
   });
   
