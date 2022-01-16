@@ -4,7 +4,9 @@ import { StatusBar } from 'expo-status-bar';
 
 function HomeScreen(props) {  
     const [show, setShow] = useState(false); 
-    const [userInput, setUserInput] = useState(null)
+    const [userInput, setUserInput] = useState(null);
+
+    const handleAddPhoto = () => {};
 
     return (
       <SafeAreaView style={styles.container}>
@@ -23,12 +25,20 @@ function HomeScreen(props) {
             <Image 
                 source={require('../assets/todaysPrompt.png')} 
                 style={styles.promptContTitle}/>
+                
+            <Image 
+                source={require('../assets/promptLogo.png')} 
+                style={styles.promptLogo}/>
 
-        <TouchableOpacity onPress={() => setShow(true)}>
-          <Image
-           style={styles.answerButton}
-          source={require('../assets/answerButton.png')}/>
-        </TouchableOpacity>
+            <Text numberOfLines={2} style={styles.promptText}>What is the highlight of your day?</Text>
+
+            <TouchableOpacity onPress={() => setShow(true)}>
+                <Image
+                    style={styles.answerButton}
+                    source={require('../assets/answerButton.png')}/>
+            </TouchableOpacity>
+
+            <Text style={styles.time}>2 hrs 15 min remaining</Text>
         </View>
 
         <Modal 
@@ -50,7 +60,11 @@ function HomeScreen(props) {
                             multiline={true}
                             placeholder="Type your answer..."
                             onChangeText={(val) => setUserInput(val)}/>
-                        <Text>{userInput}</Text>
+                        <TouchableOpacity onPress={handleAddPhoto}>
+                            <Image
+                            style={styles.addPhotoButton}
+                            source={require('../assets/addPhotoButton.png')}/>
+                        </TouchableOpacity>
                     </View>
                 </View>
         </Modal>
@@ -97,11 +111,44 @@ function HomeScreen(props) {
         height: 18,   
     },
 
+    promptLogo: { 
+        position: "absolute",
+        width: 90.85,
+        height: 107,
+        left: 110,
+        top: 81,  
+    },
+
+    promptText: {
+        position: "absolute",
+        width: 227,
+        height: 48,
+        left: 42,
+        top: 227,
+
+        fontWeight: "bold",
+        fontSize: 20,
+        textAlign: "center",
+    },
+
     answerButton: {
         width: 231,
         height: 43,
         left: 40,
-        top: 315,
+        top: 300,
+    },
+
+    time: {
+        position: "absolute",
+        width: 171,
+        height: 18,
+        left: 76,
+        bottom: 24,
+
+        fontWeight: "bold",
+        fontSize: 15,
+        opacity: 0.4,
+        textAlign: "center",
     },
 
     modalTop: {
@@ -111,6 +158,7 @@ function HomeScreen(props) {
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
     },
+
 
     modalTitle: {
             position: "absolute",
@@ -142,6 +190,13 @@ function HomeScreen(props) {
         right: 15,
         paddingTop: 30,
         padding: 30,
+    },
+
+    addPhotoButton: {
+        width: 125,
+        height: 32,
+        right: 12,
+        top: 80,
     },
   });
   
