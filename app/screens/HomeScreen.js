@@ -1,12 +1,19 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, Image, View, SafeAreaView, TextInput, TouchableOpacity, Modal} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import {launchImageLibrary} from "react-native-image-picker";
 
 function HomeScreen(props) {  
     const [show, setShow] = useState(false); 
     const [userInput, setUserInput] = useState(null);
 
-    const handleAddPhoto = () => {};
+    const handleAddPhoto =  () => {
+        let options = {};
+
+        launchImageLibrary(options, response => {console.log("response", response)});
+    };
+
+    const handlePost = () => console.log("Post clicked, should upload stuff to backend");
 
     return (
       <SafeAreaView style={styles.container}>
@@ -43,7 +50,8 @@ function HomeScreen(props) {
 
         <Modal 
             transparent={true}
-            visible={show}>
+            visible={show}
+            onRequestClose={() => setShow(false)}>
                 <View style={{backgroundColor: "#000000aa", flex: 1}}>
                     <View style={{flex: .2}}></View>
                     <View
@@ -51,7 +59,11 @@ function HomeScreen(props) {
                     >
                         <Text 
                             style={styles.modalTitle}>
-                            Answer Prompt</Text>
+                            Answer Prompt
+                        </Text>
+                        <TouchableOpacity onPress={() => setShow(false)}>
+                            <Text style={styles.modalHeaderCloseText}>X</Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={{backgroundColor: "#ffffff", padding: 50, flex: .8,}}>
                         <Text style={styles.modalPrompt}>What is the highlight of your day?</Text>
@@ -60,11 +72,19 @@ function HomeScreen(props) {
                             multiline={true}
                             placeholder="Type your answer..."
                             onChangeText={(val) => setUserInput(val)}/>
-                        <TouchableOpacity onPress={handleAddPhoto}>
-                            <Image
-                            style={styles.addPhotoButton}
-                            source={require('../assets/addPhotoButton.png')}/>
-                        </TouchableOpacity>
+                        <View style={{flexDirection: "row", alignItems: "stretch"}}>
+                            <TouchableOpacity onPress={handleAddPhoto}>
+                                <Image
+                                    style={styles.addPhotoButton}
+                                    source={require('../assets/addPhotoButton.png')}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={handlePost}>
+                                <Image
+                                    style={styles.postButton}
+                                    source={require('../assets/postButton.png')}/>
+                            </TouchableOpacity>   
+                        </View>
+                        
                     </View>
                 </View>
         </Modal>
@@ -161,12 +181,21 @@ function HomeScreen(props) {
 
 
     modalTitle: {
-            position: "absolute",
-            left: 128, 
-            top: 17,
-            width: 119,
-            height: 19,
-            fontSize: 16
+        position: "absolute",
+        left: 128, 
+        top: 17,
+        width: 119,
+        height: 19,
+        fontSize: 16
+    },
+
+    modalHeaderCloseText: {
+        position: "absolute",
+        left: 341, 
+        top: 17,
+        width: 119,
+        height: 19,
+        fontSize: 16
     },
 
     modalPrompt: {
@@ -194,9 +223,16 @@ function HomeScreen(props) {
 
     addPhotoButton: {
         width: 125,
-        height: 32,
+        height: 40,
         right: 12,
         top: 80,
+    },
+
+    postButton: {
+    width: 60,
+    height: 40,
+    left: 110,
+    top: 80
     },
   });
   
