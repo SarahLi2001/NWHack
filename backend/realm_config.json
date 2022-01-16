@@ -1,0 +1,7 @@
+{
+    "app_id": "journalapp-dyqyl",
+    "config_version": 20210101,
+    "name": "JournalApp",
+    "location": "US-OR",
+    "deployment_model": "LOCAL"
+}
