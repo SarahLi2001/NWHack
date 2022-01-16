@@ -9,49 +9,24 @@ function HomeScreen(props) {
     return (
       <SafeAreaView style={styles.container}>
         <Text
-            style={{ 
-            position: "absolute",
-            left: 32, 
-            top: 76,
-            width: 117,
-            height: 27,
-            fontSize: 23,}}>
+            style={styles.greeting}>
                 Hello!
         </Text>
 
         <Image 
             source={require('../assets/streak.png')} 
-            style={{ position: "absolute",
-            left: 32, 
-            top: 135}}/>
+            style={styles.streak}/>
 
         <View 
-          style={{
-            width: 311,
-            height: 424,
-            left: 32,
-            top: 265,
-            
-            backgroundColor: "#F2F2F2",
-            borderRadius: 20,
-          }}>
+          style={styles.promptCont}>
 
             <Image 
                 source={require('../assets/todaysPrompt.png')} 
-                style={{ 
-                left: 77, 
-                top: 24,
-                height: 18,
-                }}/>
+                style={styles.promptContTitle}/>
 
         <TouchableOpacity onPress={() => setShow(true)}>
           <Image
-           style={{
-            width: 231,
-            height: 43,
-            left: 40,
-            top: 315,
-          }}
+           style={styles.answerButton}
           source={require('../assets/answerButton.png')}/>
         </TouchableOpacity>
         </View>
@@ -62,13 +37,7 @@ function HomeScreen(props) {
                 <View style={{backgroundColor: "#000000aa", flex: 1}}>
                     <View style={{flex: .2}}></View>
                     <View
-                        style={{
-                        backgroundColor: "#F4F4F4",
-                        width: 375,
-                        height: 53,
-                        borderTopLeftRadius: 24,
-                        borderTopRightRadius: 24,
-                        }}
+                        style={styles.modalTop}
                     >
                         <Text 
                             style={styles.modalTitle}>
@@ -90,6 +59,52 @@ function HomeScreen(props) {
     container: {
       flex: 1,
       backgroundColor: '#fff',
+    },
+
+    greeting: { 
+        position: "absolute",
+        left: 32, 
+        top: 76,
+        width: 117,
+        height: 27,
+        fontSize: 23,
+    },
+
+    streak: { 
+        position: "absolute",
+        left: 32, 
+        top: 135
+    },
+
+    promptCont: {
+        width: 311,
+        height: 424,
+        left: 32,
+        top: 265,
+        
+        backgroundColor: "#F2F2F2",
+        borderRadius: 20,
+      },
+
+    promptContTitle: { 
+        left: 77, 
+        top: 24,
+        height: 18,   
+    },
+
+    answerButton: {
+        width: 231,
+        height: 43,
+        left: 40,
+        top: 315,
+    },
+
+    modalTop: {
+        backgroundColor: "#F4F4F4",
+        width: 375,
+        height: 53,
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
     },
 
     modalTitle: {
